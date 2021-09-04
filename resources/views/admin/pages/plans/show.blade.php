@@ -12,7 +12,6 @@
 
     </div>
     <div class="card-body">
-        @include('admin.includes.alerts')
         <ul>
             <li>
                 <strong>Nome:</strong> {{ $plan->name }}

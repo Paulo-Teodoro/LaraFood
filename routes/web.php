@@ -1,22 +1,47 @@
 <?php
 
+use App\Http\Controllers\Admin\ACL\PermissionController;
+use App\Http\Controllers\Admin\ACL\PermissionProfileController;
+use App\Http\Controllers\Admin\ACL\PlanProfileController;
+use App\Http\Controllers\Admin\ACL\ProfileController;
 use App\Http\Controllers\Admin\DetailPlanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PlanController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
+/**
+ * Admin Routes
+ */
 Route::prefix('admin')->group(function () {
+    /**
+     * Plans x Profile
+     */
+    Route::any('plans/{id}/profiles/create', [PlanProfileController::class, 'profilesAvailable'])->name('plans.profiles.available');
+    Route::get('plans/{id}/profiles/{idPlan}', [PlanProfileController::class, 'detachProfilesPlan'])->name('plans.profiles.detach');
+    Route::post('plans/{id}/profiles', [PlanProfileController::class, 'attachProfilesProfile'])->name('plans.profiles.attach');
+    Route::get('plans/{id}/profiles', [PlanProfileController::class, 'profiles'])->name('plans.profiles'); 
+    Route::get('profiles/{id}/plans', [PlanProfileController::class, 'plans'])->name('profiles.plans');
+
+    /**
+     * Permissions x Profile
+     */
+    Route::any('profiles/{id}/permissions/create', [PermissionProfileController::class, 'permissionsAvailable'])->name('profiles.permissions.available');
+    Route::get('profiles/{id}/permissions/{idPermission}', [PermissionProfileController::class, 'detachPermissionsProfile'])->name('profiles.permissions.detach');
+    Route::post('profiles/{id}/permissions', [PermissionProfileController::class, 'attachPermissionsProfile'])->name('profiles.permissions.attach');
+    Route::get('profiles/{id}/permissions', [PermissionProfileController::class, 'permissions'])->name('profiles.permissions');
+    Route::get('permissions/{id}/profiles', [PermissionProfileController::class, 'profiles'])->name('permissions.profiles');
+    
+    /**
+     * Routes Permissions
+     */
+    Route::resource('/permissions', PermissionController::class);
+    Route::any('/permissions/search', [PermissionController::class, 'search'])->name('permissions.search');
+
+    /**
+     * Routes Profile
+     */
+    Route::resource('/profiles', ProfileController::class);
+    Route::any('/profiles/search', [ProfileController::class, 'search'])->name('profiles.search');
+
     /**
      * Routes Details Plan
      */
