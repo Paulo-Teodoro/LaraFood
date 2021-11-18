@@ -11,7 +11,9 @@ use App\Http\Controllers\Admin\PlanController;
 /**
  * Admin Routes
  */
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')
+->middleware('auth')
+->group(function () {
     /**
      * Plans x Profile
      */
@@ -79,3 +81,7 @@ Route::prefix('admin')->group(function () {
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
