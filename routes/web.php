@@ -7,6 +7,9 @@ use App\Http\Controllers\Admin\ACL\ProfileController;
 use App\Http\Controllers\Admin\DetailPlanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PlanController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Site\SiteController;
+use App\Models\User;
 
 /**
  * Admin Routes
@@ -14,6 +17,13 @@ use App\Http\Controllers\Admin\PlanController;
 Route::prefix('admin')
 ->middleware('auth')
 ->group(function () {
+
+    /**
+     * Routes Users
+     */
+    Route::resource('/users', UserController::class);
+    Route::any('/users/search', [UserController::class, 'search'])->name('users.search');
+
     /**
      * Plans x Profile
      */
@@ -77,11 +87,12 @@ Route::prefix('admin')
 });
 
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+/**
+ * Routes Site
+ */
+Route::get('/', [SiteController::class, 'index'])->name('site.home');
+Route::get('/plan/{url}', [SiteController::class, 'plan'])->name('plan.subscription');
 
 Auth::routes();
 
-Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
