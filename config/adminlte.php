@@ -241,8 +241,15 @@ return [
         [
             'text' => 'Usuarios',
             'url'  =>  'admin/users'
+        ],
+        [
+            'text' => 'Categorias',
+            'url'  =>  'admin/categories'
+        ],
+        [
+            'text' => 'Produtos',
+            'url'  =>  'admin/products'
         ]
-        
     ],
 
     /*
