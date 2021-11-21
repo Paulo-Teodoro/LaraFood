@@ -249,6 +249,10 @@ return [
         [
             'text' => 'Produtos',
             'url'  =>  'admin/products'
+        ],
+        [
+            'text' => 'Mesas',
+            'url'  =>  'admin/tables'
         ]
     ],
 

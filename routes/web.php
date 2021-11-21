@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DetailPlanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Site\SiteController;
 use App\Models\User;
@@ -20,6 +21,12 @@ use App\Models\User;
 Route::prefix('admin')
 ->middleware('auth')
 ->group(function () {
+
+    /**
+     * Routes Tables
+     */
+    Route::resource('/tables', TableController::class);
+    Route::any('/tables/search', [TableController::class, 'search'])->name('tables.search');
 
     /**
      * Routes Products
