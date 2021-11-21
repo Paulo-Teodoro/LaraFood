@@ -22,6 +22,10 @@ Route::prefix('admin')
 ->middleware('auth')
 ->group(function () {
 
+    Route::get('test-acl', function() {
+        dd(auth()->user()->isAdmin());
+    });
+
     /**
      * Routes Tables
      */
@@ -60,7 +64,7 @@ Route::prefix('admin')
      */
     Route::any('plans/{id}/profiles/create', [PlanProfileController::class, 'profilesAvailable'])->name('plans.profiles.available');
     Route::get('plans/{id}/profiles/{idPlan}', [PlanProfileController::class, 'detachProfilesPlan'])->name('plans.profiles.detach');
-    Route::post('plans/{id}/profiles', [PlanProfileController::class, 'attachProfilesProfile'])->name('plans.profiles.attach');
+    Route::post('plans/{id}/profiles', [PlanProfileController::class, 'attachProfilesPlan'])->name('plans.profiles.attach');
     Route::get('plans/{id}/profiles', [PlanProfileController::class, 'profiles'])->name('plans.profiles'); 
     Route::get('profiles/{id}/plans', [PlanProfileController::class, 'plans'])->name('profiles.plans');
 

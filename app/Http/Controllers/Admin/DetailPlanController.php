@@ -17,6 +17,8 @@ class DetailPlanController extends Controller
     {
         $this->repository = $detailPlan;
         $this->plan = $plan;
+
+        $this->middleware(['can:Planos']);
     }
     /**
      * Display a listing of the resource.

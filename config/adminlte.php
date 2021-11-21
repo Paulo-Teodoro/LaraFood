@@ -229,30 +229,37 @@ return [
         [
             'text' => 'Planos',
             'url'  => 'admin/plans',
+            'can' => 'Planos'
         ],
         [
             'text' => 'Perfis',
-            'url'  =>  'admin/profiles'
+            'url'  =>  'admin/profiles',
+            'can' => 'Perfis'
         ],
         [
             'text' => 'Permissões',
-            'url'  =>  'admin/permissions'
+            'url'  =>  'admin/permissions',
+            'can' => 'Permissoes'
         ],
         [
             'text' => 'Usuarios',
-            'url'  =>  'admin/users'
+            'url'  =>  'admin/users',
+            'can' => 'Usuarios'
         ],
         [
             'text' => 'Categorias',
-            'url'  =>  'admin/categories'
+            'url'  =>  'admin/categories',
+            'can' => 'Categorias'
         ],
         [
             'text' => 'Produtos',
-            'url'  =>  'admin/products'
+            'url'  =>  'admin/products',
+            'can' => 'Produtos'
         ],
         [
             'text' => 'Mesas',
-            'url'  =>  'admin/tables'
+            'url'  =>  'admin/tables',
+            'can' => 'Mesas'
         ]
     ],
 

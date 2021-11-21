@@ -15,6 +15,8 @@ class PermissionProfileController extends Controller
     {
         $this->profile = $profile;
         $this->permission = $permission;
+
+        $this->middleware(['can:Permissoes']);
     }
     
     public function permissions($idProfile)
